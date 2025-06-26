@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compliance – DocMersion</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: '#3aa9ff',
+              dark: '#0a2239',
+            },
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-30 bg-white/90 backdrop-blur shadow-sm border-b border-gray-100">
+      <div class="container mx-auto flex items-center justify-between px-4 py-3">
+        <a href="index.html" class="flex items-center text-2xl font-bold">
+          <span class="text-black">Doc</span><span class="text-brand">Mersion</span>
+        </a>
+        <div class="hidden md:flex space-x-8 items-center">
+          <div class="relative" id="solutions-desktop">
+            <button id="solutions-desktop-btn" class="hover:text-brand transition flex items-center focus:outline-none">
+              <span>Solutions</span>
+              <svg class="w-4 h-4 ml-1 inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="solutions-desktop-dropdown" class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50 text-right">
+              <a href="non-profit.html" class="block px-4 py-2 hover:bg-blue-50">Nonprofits</a>
+              <a href="government.html" class="block px-4 py-2 hover:bg-blue-50">Government</a>
+              <a href="associations.html" class="block px-4 py-2 hover:bg-blue-50">Associations</a>
+              <a href="education.html" class="block px-4 py-2 hover:bg-blue-50">Education</a>
+            </div>
+          </div>
+          <a href="pricing.html" class="hover:text-brand transition">Pricing</a>
+          <a href="#" class="hover:text-brand transition font-bold border-b-2 border-brand">Compliance</a>
+          <a href="https://app.arcade.software/share/Q0aiaL3qDKFfQe9FboXV" target="_blank" rel="noopener" class="hover:text-brand transition">Demo</a>
+          <a href="book-demo.html" class="ml-4 px-5 py-2 rounded-full border border-brand text-brand hover:bg-brand hover:text-white transition font-semibold">Book a Demo</a>
+        </div>
+        <button class="md:hidden text-3xl" id="mobile-menu-btn"><i class="bi bi-list"></i></button>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 pb-4">
+        <div class="relative" id="solutions-mobile">
+          <button class="block py-2 w-full text-left hover:text-brand focus:outline-none flex justify-between items-center" id="mobile-solutions-btn">
+            <span>Solutions</span>
+            <svg class="w-4 h-4 ml-2 inline-block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="mobile-solutions-menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg z-50 text-right">
+            <a href="non-profit.html" class="block px-4 py-2 hover:bg-blue-50">Nonprofits</a>
+            <a href="government.html" class="block px-4 py-2 hover:bg-blue-50">Government</a>
+            <a href="associations.html" class="block px-4 py-2 hover:bg-blue-50">Associations</a>
+            <a href="education.html" class="block px-4 py-2 hover:bg-blue-50">Education</a>
+          </div>
+        </div>
+        <a href="pricing.html" class="block py-2 hover:text-brand">Pricing</a>
+        <a href="#" class="block py-2 hover:text-brand font-bold border-b-2 border-brand">Compliance</a>
+        <a href="https://app.arcade.software/share/Q0aiaL3qDKFfQe9FboXV" target="_blank" rel="noopener" class="block py-2 hover:text-brand">Demo</a>
+        <a href="book-demo.html" class="block py-2 mt-2 px-5 rounded-full border border-brand text-brand hover:bg-brand hover:text-white transition font-semibold">Book a Demo</a>
+      </div>
+    </nav>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.onclick = () => menu.classList.toggle('hidden');
+
+        // Desktop Solutions Dropdown (click-to-open)
+        const solutionsDesktop = document.getElementById('solutions-desktop');
+        const solutionsDesktopBtn = document.getElementById('solutions-desktop-btn');
+        const solutionsDesktopDropdown = document.getElementById('solutions-desktop-dropdown');
+        let desktopDropdownOpen = false;
+        if (solutionsDesktop && solutionsDesktopBtn && solutionsDesktopDropdown) {
+          solutionsDesktopBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            desktopDropdownOpen = !desktopDropdownOpen;
+            if (desktopDropdownOpen) {
+              solutionsDesktopDropdown.classList.add('dropdown-open');
+            } else {
+              solutionsDesktopDropdown.classList.remove('dropdown-open');
+            }
+          });
+          // Close dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (desktopDropdownOpen && !solutionsDesktop.contains(e.target)) {
+              solutionsDesktopDropdown.classList.remove('dropdown-open');
+              desktopDropdownOpen = false;
+            }
+          });
+        }
+
+        // Mobile Solutions Dropdown
+        const mobileSolutionsBtn = document.getElementById('mobile-solutions-btn');
+        const mobileSolutionsMenu = document.getElementById('mobile-solutions-menu');
+        if (mobileSolutionsBtn && mobileSolutionsMenu) {
+          mobileSolutionsBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            mobileSolutionsMenu.classList.toggle('hidden');
+          });
+          // Hide dropdown when clicking outside
+          document.addEventListener('click', function(e) {
+            if (!mobileSolutionsMenu.classList.contains('hidden')) {
+              if (!mobileSolutionsBtn.contains(e.target) && !mobileSolutionsMenu.contains(e.target)) {
+                mobileSolutionsMenu.classList.add('hidden');
+              }
+            }
+          });
+        }
+      });
+    </script>
+
+    <!-- Compliance Content -->
+    <main class="pt-32 pb-20 bg-blue-50 min-h-[60vh]">
+      <div class="container mx-auto px-4 max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-6 text-brand text-center">Compliance: WCAG 2.1, ADA, & CIPA</h1>
+        <div class="bg-white rounded-xl shadow p-8 mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-dark">Our Commitment to Accessibility & Compliance</h2>
+          <p class="text-lg text-gray-700 mb-4">
+            At DocMersion, we believe that digital accessibility and regulatory compliance are not just legal requirements—they’re essential to serving all people fairly, building trust, and fostering innovation.
+          </p>
+          <ul class="list-disc pl-6 mb-4 text-gray-800">
+            <li><strong>WCAG 2.1:</strong> We adhere to the Web Content Accessibility Guidelines (WCAG) 2.1 to ensure our platform is usable by everyone, including people with disabilities.</li>
+            <li><strong>ADA:</strong> Our site and platform are designed to meet standards set by the Americans with Disabilities Act (ADA), supporting equal access and opportunity for all users.</li>
+            <li><strong>CIPA:</strong> We support compliance with the Children’s Internet Protection Act (CIPA), helping organizations provide safe, responsible digital environments.</li>
+          </ul>
+          <p class="text-gray-700 mb-2">
+            <strong>Why does this matter?</strong>
+          </p>
+          <ul class="list-disc pl-6 mb-4 text-gray-800">
+            <li>Accessibility opens your content to everyone, including people with disabilities.</li>
+            <li>Compliance reduces legal risk and demonstrates social responsibility.</li>
+            <li>Accessible and compliant sites are easier to use, rank better in search engines, and serve broader audiences.</li>
+          </ul>
+          <p class="text-gray-700">
+            We are committed to ongoing improvements and welcome feedback to make our platform even more accessible and inclusive. If you have questions about compliance, accessibility, or best practices, please <a href="index.html#contact" class="text-brand underline hover:text-blue-700">contact us</a>.
+          </p>
+        </div>
+        <div class="flex justify-center">
+          <i class="bi bi-universal-access text-brand" style="font-size:4rem;"></i>
+        </div>
+      </div>
+    </main>
+
+    <!-- Compliance Deep Dive Sections -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 max-w-4xl flex flex-col gap-16">
+        <!-- 1. What is Digital Compliance? -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0"><i class="bi bi-shield-check text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">What is Digital Compliance?</h3>
+            <p class="text-gray-700">Digital compliance means ensuring your website and digital documents meet legal and ethical standards for accessibility, privacy, and security. For public-facing organizations, this is not just best practice—it’s the law.</p>
+          </div>
+        </div>
+        <!-- 2. Key Standards We Meet -->
+        <div class="flex flex-col md:flex-row items-center gap-8 bg-blue-50 rounded-xl p-6">
+          <div class="flex-shrink-0"><i class="bi bi-award text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Key Standards We Meet</h3>
+            <ul class="list-disc pl-6 text-gray-700">
+              <li><strong>WCAG 2.1:</strong> Web Content Accessibility Guidelines ensure content is usable by people with disabilities.</li>
+              <li><strong>ADA:</strong> The Americans with Disabilities Act mandates digital accessibility for equal opportunity.</li>
+              <li><strong>CIPA:</strong> Children’s Internet Protection Act requires safe and responsible online environments in schools and libraries.</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 3. Risks of Non-Compliance -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0"><i class="bi bi-exclamation-triangle text-yellow-500" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Risks of Non-Compliance</h3>
+            <ul class="list-disc pl-6 text-gray-700">
+              <li>Legal action and costly lawsuits</li>
+              <li>Loss of funding or grants</li>
+              <li>Damaged reputation and public trust</li>
+              <li>Excluding people who need your information most</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 4. How DocMersion Ensures Compliance -->
+        <div class="flex flex-col md:flex-row items-center gap-8 bg-blue-50 rounded-xl p-6">
+          <div class="flex-shrink-0"><i class="bi bi-gear-wide-connected text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">How DocMersion Ensures Compliance</h3>
+            <ul class="list-disc pl-6 text-gray-700">
+              <li>Automated accessibility testing on all documents</li>
+              <li>Manual audits by accessibility experts</li>
+              <li>Continuous updates to meet evolving standards</li>
+              <li>Welcoming user feedback to improve accessibility</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 5. Continuous Education & Resources -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0"><i class="bi bi-journal-text text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Continuous Education & Resources</h3>
+            <p class="text-gray-700">We provide ongoing education for our team and clients, and curate resources to help you stay informed. Visit the <a href="https://www.w3.org/WAI/" target="_blank" rel="noopener" class="text-brand underline hover:text-blue-700">W3C Web Accessibility Initiative</a> for more, or <a href="index.html#contact" class="text-brand underline hover:text-blue-700">contact us</a> for compliance support.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- More Compliance Sections -->
+    <section class="py-16 bg-blue-50">
+      <div class="container mx-auto px-4 max-w-4xl flex flex-col gap-16">
+        <!-- 6. Global Accessibility Laws & Standards -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0"><i class="bi bi-globe text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Global Accessibility Laws & Standards</h3>
+            <p class="text-gray-700">DocMersion is designed to help organizations meet not just U.S. standards, but also international accessibility requirements such as EN 301 549 (EU), AODA (Canada), and more. We stay informed about global regulations to help you serve a worldwide audience.</p>
+          </div>
+        </div>
+        <!-- 7. Data Privacy & Confidentiality -->
+        <div class="flex flex-col md:flex-row items-center gap-8 bg-white rounded-xl p-6">
+          <div class="flex-shrink-0"><i class="bi bi-lock text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Data Privacy & Confidentiality</h3>
+            <p class="text-gray-700">Compliance isn’t just about accessibility—it’s about protecting your users’ information. We follow best practices for data privacy and confidentiality, supporting regulations such as GDPR (Europe), FERPA (U.S. education), and more, so your documents and your users are always protected.</p>
+          </div>
+        </div>
+        <!-- 8. Inclusive Design & User Feedback -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-shrink-0"><i class="bi bi-people text-brand" style="font-size:2.5rem;"></i></div>
+          <div>
+            <h3 class="text-2xl font-bold mb-2 text-dark">Inclusive Design & User Feedback</h3>
+            <p class="text-gray-700">We believe compliance is a journey, not a checkbox. Our team works with real users—including those with disabilities—to test, refine, and improve our platform. Your feedback is always welcome and helps us build a more inclusive digital world.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-6 mt-12">
+      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-xl font-bold"><span class="text-black">Doc</span><span class="text-brand">Mersion</span></div>
+        <div class="flex gap-6 text-gray-400">
+          <a href="index.html#contact" class="hover:text-brand">Contact</a>
+        </div>
+        <div class="text-sm text-gray-400">© <span id="year"></span> Sopris Apps, LLC</div>
+      </div>
+    </footer>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>

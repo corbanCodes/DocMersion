@@ -1,0 +1,21 @@
+html { font-family: 'Inter', sans-serif; }
+
+/* Ensure dropdown menus are right-justified */
+#solutions-desktop .absolute,
+#solutions-mobile .absolute {
+  right: 0;
+  left: auto;
+}
+
+/* Desktop dropdown sticky open state */
+#solutions-desktop-dropdown {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#solutions-desktop-dropdown.dropdown-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+
