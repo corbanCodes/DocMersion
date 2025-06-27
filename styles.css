@@ -1,5 +1,14 @@
 html { font-family: 'Inter', sans-serif; }
 
+/* Icon hover grow effect */
+.icon-hover {
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.icon-hover:hover {
+  transform: scale(1.12);
+}
+
+
 /* Ensure dropdown menus are right-justified */
 #solutions-desktop .absolute,
 #solutions-mobile .absolute {
